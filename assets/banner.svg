@@ -1,0 +1,9 @@
+<svg width="1200" height="360" viewBox="0 0 1200 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="360" rx="28" fill="#101827"/>
+  <path d="M700 120 H900 M790 72 L900 120 L790 168 M1120 240 H920 M1030 192 L920 240 L1030 288" stroke="#60a5fa" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" opacity="0.82"/>
+  <circle cx="1030" cy="82" r="42" fill="#60a5fa" opacity="0.16"/>
+  <circle cx="1094" cy="138" r="18" fill="#ffffff" opacity="0.16"/>
+  <text x="76" y="154" fill="#f8fafc" font-family="Inter, ui-sans-serif, system-ui" font-size="64" font-weight="800">api-shadow-compare</text>
+  <text x="80" y="216" fill="#cbd5e1" font-family="Inter, ui-sans-serif, system-ui" font-size="28">diff behavior before rollout</text>
+  <rect x="80" y="258" width="220" height="8" rx="4" fill="#60a5fa"/>
+</svg>
