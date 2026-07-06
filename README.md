@@ -1,41 +1,25 @@
 # API Shadow Compare
 
-<p align="center">
-  <img src="assets/readme-cover.svg" alt="API Shadow Compare cover" width="100%" />
-</p>
+Compare old and new API response captures and list the behavioral drift.
 
-Compare old and new API response captures for behavior drift.
+![API Shadow Compare cover](assets/readme-cover.svg)
 
-## Working notes
+## What counts as drift
 
-- quick local checks around API operations
-- small CI jobs where a readable report is enough
-- review workflows that need deterministic output
-- examples based on `examples/old.jsonl`
+- missing or extra response IDs
+- status code changes
+- fields added or removed from nested response bodies
+- value changes on matching fields
+- latency regressions beyond the configured ratio
 
-## Install
+## Run the example pair
 
 ```bash
 git clone https://github.com/mertefekurt/api-shadow-compare.git
 cd api-shadow-compare
-python -m venv .venv
-source .venv/bin/activate
 python -m pip install -e ".[dev]"
+api-shadow-compare examples/old.jsonl examples/new.jsonl
+api-shadow-compare examples/old.jsonl examples/new.jsonl --json
 ```
 
-## Use
-
-```bash
-api-shadow-compare examples/old.jsonl
-```
-
-## Files
-
-```text
-.github/        CI workflow
-examples/       sample inputs
-src/            package source
-tests/          test coverage
-.gitignore      project file
-pyproject.toml  package metadata
-```
+The plain output is easy to read in a terminal; JSON is there when the comparison needs to feed another tool.
