@@ -1,35 +1,41 @@
-<p align="center"><img src="assets/banner.svg" alt="api-shadow-compare banner"></p>
+# API Shadow Compare
 
-# api-shadow-compare
+<p align="center">
+  <img src="assets/readme-cover.svg" alt="API Shadow Compare cover" width="100%" />
+</p>
 
-Compare two API captures: one from the current path, one from a shadow path. The tool matches rows by `id`,
-flattens JSON responses, and reports behavior drift that should be reviewed before rollout.
+Compare old and new API response captures for behavior drift.
+
+## Working notes
+
+- quick local checks around API operations
+- small CI jobs where a readable report is enough
+- review workflows that need deterministic output
+- examples based on `examples/old.jsonl`
+
+## Install
+
+```bash
+git clone https://github.com/mertefekurt/api-shadow-compare.git
+cd api-shadow-compare
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -e ".[dev]"
+```
+
+## Use
+
+```bash
+api-shadow-compare examples/old.jsonl
+```
 
 ## Files
 
-```json
-{"id":"req-1","status":200,"latency_ms":80,"body":{"plan":"pro","limit":10}}
+```text
+.github/        CI workflow
+examples/       sample inputs
+src/            package source
+tests/          test coverage
+.gitignore      project file
+pyproject.toml  package metadata
 ```
-
-## Command
-
-```bash
-api-shadow-compare examples/old.jsonl examples/new.jsonl --latency-ratio 1.5
-api-shadow-compare examples/old.jsonl examples/new.jsonl --json
-```
-
-## Drift classes
-
-| class | example |
-| --- | --- |
-| `missing-response` | old capture has an id that new capture dropped |
-| `status-change` | `200` became `500` |
-| `field-added` / `field-removed` | response shape changed |
-| `value-change` | same field, different scalar value |
-| `latency-regression` | new latency exceeds ratio threshold |
-
-## Exit behavior
-
-Returns `1` when drift is found and `0` when captures match. That makes it useful in CI shadow tests.
-
-MIT.
